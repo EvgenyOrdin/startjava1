@@ -13,7 +13,7 @@ public class MyFirstGame {
 				System.out.println("Нет, число компьютера меньше!");
 				userNumber--;
 			}
-		} while ( randomNumber != userNumber);
+		} while (randomNumber != userNumber);
 		System.out.println("Вы угадали! " + "Компьютер загадал число " + randomNumber);	
 	}
 }

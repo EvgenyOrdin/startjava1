@@ -2,30 +2,29 @@ public class Calculator {
 	public static void main(String[] args) {
 		long x = 10; 
 		long y = 11; // числа вводимые пользователем
-		char z = '^' ; // z - знак
-		long result; // результат математического выражения
-		if (z == '%') {
+		char mathSymbol = '/';
+		long result;
+		
+		if (mathSymbol == '%') {
 			result = x % y;
-			System.out.println(x + " " + z + " " + y + " = " + result);
-		} else if (z == '+') {
+			System.out.println(x + " " + mathSymbol + " " + y + " = " + result);
+		} else if (mathSymbol == '+') {
 			result = x + y;
-			System.out.println(x + " " + z + " " + y + " = " + result);
-		} else if (z == '-') {
+			System.out.println(x + " " + mathSymbol + " " + y + " = " + result);
+		} else if (mathSymbol == '-') {
 			result = x - y;
-			System.out.println(x + " " + z + " " + y + " = " + result);
-		} else if (z == '*') {
+			System.out.println(x + " " + mathSymbol + " " + y + " = " + result);
+		} else if (mathSymbol == '*') {
 			result = x * y;
-			System.out.println(x + " " + z + " " + y + " = " + result);
-		} else if (z == '/') {
-			double y1 = y;
-			double result1 = x / y1;
-			System.out.println(x + " " + z + " " + y + " = " + result1);
-		} else if (z == '^' && y > 0) {
+			System.out.println(x + " " + mathSymbol + " " + y + " = " + result);
+		} else if (mathSymbol == '/') {
+			System.out.println(x + " " + mathSymbol + " " + y + " = " + (double)x / (double)y);
+		} else if (mathSymbol == '^' && y > 0) {
 			result = x;
 			for (int i = 1; i < y; i++) {
-				result = result * x;
+				result *= x;
 			}
-			System.out.println(x + " " + z + " " + y + " = " + result);
+			System.out.println(x + " " + mathSymbol + " " + y + " = " + result);
 		}
 	}
 }

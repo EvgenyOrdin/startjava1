@@ -1,9 +1,7 @@
-public class Unicode {
+public class Uniсode {
 	public static void main(String[] args) {
-		char x = 33;
-		while(x < 127) {
-		System.out.print(x);
-		x++;
+		for(char i = 33; i < 127; i++) {
+		System.out.print(i);
 		}
 	}
 }
