@@ -3,6 +3,7 @@ public class MyFirstGame {
 		System.out.println("Угадайте число!");
 		int randomNumber = 26;
 		int userNumber = 14;
+		
 		do {
 			if (randomNumber > userNumber) {
 				System.out.println("Введеное вами число = " + userNumber);

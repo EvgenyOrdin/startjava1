@@ -1,9 +1,9 @@
 public class Calculator {
 	public static void main(String[] args) {
-		long x = 10; 
-		long y = 11; // числа вводимые пользователем
+		int x = 10; 
+		int y = 11; // числа вводимые пользователем
 		char mathSymbol = '/';
-		long result;
+		double result;
 		
 		if (mathSymbol == '%') {
 			result = x % y;
@@ -18,7 +18,8 @@ public class Calculator {
 			result = x * y;
 			System.out.println(x + " " + mathSymbol + " " + y + " = " + result);
 		} else if (mathSymbol == '/') {
-			System.out.println(x + " " + mathSymbol + " " + y + " = " + (double)x / (double)y);
+			result = (double)x / y;
+			System.out.println(x + " " + mathSymbol + " " + y + " = " + result);
 		} else if (mathSymbol == '^' && y > 0) {
 			result = x;
 			for (int i = 1; i < y; i++) {
