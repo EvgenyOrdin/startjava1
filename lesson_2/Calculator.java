@@ -1,7 +1,7 @@
 public class Calculator {
 	private int x; 
 	private int y; // числа вводимые пользователем
-	private char mathSymbol;
+	private char mathSign;
 		
 	public void setX(int x) {
 		this.x = x;
@@ -11,36 +11,36 @@ public class Calculator {
 		this.y = y;
 	}
 
-	public void setMathSymbol(char mathSymbol) {
-		this.mathSymbol = mathSymbol;
+	public void setMathSign(char mathSign) {
+		this.mathSign = mathSign;
 	}
 
 	public void calc() {
-		switch(mathSymbol) {
+		switch(mathSign) {
 			case '+' :
-				System.out.println(x + " " + mathSymbol + " " + y + " = " + (x + y));
+				System.out.println(x + " " + mathSign + " " + y + " = " + (x + y));
 				break;
 			case '-' :
-				System.out.println(x + " " + mathSymbol + " " + y + " = " + (x - y));
+				System.out.println(x + " " + mathSign + " " + y + " = " + (x - y));
 				break;
 			case '%' :
-				System.out.println(x + " " + mathSymbol + " " + y + " = " + (x % y));
+				System.out.println(x + " " + mathSign + " " + y + " = " + (x % y));
 				break;
 			case '*' :
-				System.out.println(x + " " + mathSymbol + " " + y + " = " + (x * y));
+				System.out.println(x + " " + mathSign + " " + y + " = " + (x * y));
 				break;
 			case '/' :
-				System.out.println(x + " " + mathSymbol + " " + y + " = " + ((double)x / y));
+				System.out.println(x + " " + mathSign + " " + y + " = " + ((double)x / y));
 				break;
 			case '^' :
 				long result = x;
 				for (int i = 1; i < y; i++) {
 					result *= x;
 				}
-				System.out.println(x + " " + mathSymbol + " " + y + " = " + result);
+				System.out.println(x + " " + mathSign + " " + y + " = " + result);
 				break;
 			default :
-					System.out.println("Введите корректный знак");			
+				System.out.println("Введите корректный знак");			
 			}
 		}
 }

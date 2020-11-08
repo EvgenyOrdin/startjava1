@@ -1,6 +1,5 @@
 public class JaegerTest {
 	public static void main(String[] args) {
-		
 		Jaeger jaeger1 = new Jaeger();
 		Jaeger jaeger2 = new Jaeger();
 		
@@ -12,7 +11,7 @@ public class JaegerTest {
 		jaeger1.setWeapon("Кулаки Тесла");
 		jaeger1.setArmor(10);
 
-		jaeger1.jaegerInfo();
+		System.out.println(jaeger1);
 		
 		jaeger1.useWeapon();
 
@@ -24,10 +23,8 @@ public class JaegerTest {
 		jaeger2.setWeapon("Ручные лезвия");
 		jaeger2.setArmor(3);
 
-		jaeger2.jaegerInfo();
+		System.out.println(jaeger2);
 		
 		jaeger2.useWeapon();
-
-
 	}
 }
