@@ -11,51 +11,52 @@ public class GuessNumber {
 		this.p2 = p2;
 	}
 
-	public void generator() {
+	private void generator() {
 		Random random = new Random();
 		compNum = random.nextInt(100);
 		System.out.println("Компьютер загадал число от 0 до 100!");
 	}
 
-	public void game() {
+	public void start() {
+		generator();
+		
 		while(true) {
 			Scanner scan = new Scanner(System.in);
 		
 			System.out.print(p1.getName() + " введите число: ");
 			p1.setNumber(scan.nextInt());
+
+			boolean check = check(p1.getNumber(), p1.getName());
+
+			if(check) {
+				break;
+			} else {
+				System.out.println(p2.getName() + " ваша очередь");
+			}
 		
 			System.out.print(p2.getName() + " введите число: ");
 			p2.setNumber(scan.nextInt());
 
-			if(compNum == p1.getNumber() && p1.getNumber() != p2.getNumber()) {
-				System.out.println(p1.getName() + " Победил(а)");
+			check = check(p2.getNumber(), p2.getName());
+
+			if(check) {
 				break;
-			} else if(compNum == p2.getNumber() && p1.getNumber() != p2.getNumber()) {
-				System.out.println(p2.getName() + " Победил(а)");
-				break;
-			} else if(p1.getNumber() == p2.getNumber()) {
-				System.out.println("Игроки ввели одинаковые числа, победитель может быть только один");
 			} else {
-				hint1();
-				hint2();
-				System.out.println("Продолжаем...");
+				System.out.println(p1.getName() + " ваша очередь");
 			}
 		}
 	}
 
-	public void hint1() {
-		if (compNum > p1.getNumber()) {
-				System.out.println(p1.getName() + "! число компьютера больше чем ваше!");
-			} else if (compNum < p1.getNumber()) {
-				System.out.println(p1.getName() + "! число компьютера меньше чем ваше!");
-			}
-	}
-
-	public void hint2() {
-		if (compNum > p2.getNumber()) {
-				System.out.println(p2.getName() + "! число компьютера больше чем ваше!");
-			} else if (compNum < p2.getNumber()) {
-				System.out.println(p2.getName() + "! число компьютера меньше чем ваше!");
+	private boolean check(int number, String name) {
+		if (compNum > number) {
+				System.out.println(name + "! число компьютера больше чем ваше!");
+				return false;
+			} else if (compNum < number) {
+				System.out.println(name + "! число компьютера меньше чем ваше!");
+				return false;
+			} else {
+				System.out.println(name + ", ВЫ ПОБЕДИЛИ!");
+				return true;
 			}
 	}
 }
