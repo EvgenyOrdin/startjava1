@@ -8,60 +8,14 @@ public class Jaeger {
 	private int armor;
 	private String weapon;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
+	public Jaeger(String name, String mark, String origin, float weight, float height, int armor, String weapon) {
 		this.name = name;
-	}
-
-	public String getMark() {
-		return mark;
-	}
-
-	public void setMark(String mark) {
 		this.mark = mark;
-	}
-
-	public String getOrigin() {
-		return origin;
-	}
-
-	public void setOrigin(String origin) {
 		this.origin = origin;
-	}
-
-	public String getWeapon() {
-		return weapon;
-	}
-
-	public void setWeapon(String weapon) {
-		this.weapon = weapon;
-	}
-
-	public float getHeight() {
-		return height;
-	}
-
-	public void setHeight(float height) {
 		this.height = height;
-	}
-
-	public float getWeight() {
-		return weight;
-	}
-
-	public void setWeight(float weight) {
 		this.weight = weight;
-	}
-
-	public int getArmor() {
-		return armor;
-	}
-	
-	public void setArmor(int armor) {
 		this.armor = armor;
+		this.weapon = weapon;
 	}
 
 	public void useWeapon() {

@@ -1,27 +1,11 @@
 public class JaegerTest {
 	public static void main(String[] args) {
-		Jaeger jaeger1 = new Jaeger();
-		Jaeger jaeger2 = new Jaeger();
+		Jaeger jaeger1 = new Jaeger("Черно Альфа", "Mark-1", "Россия", 2.412f, 85.34f, 10, "'Кулаки Тесла'");
+		Jaeger jaeger2 = new Jaeger("Молчаливый Ронин", "Mark-1", "Япония", 7.450f, 74.37f, 3, "'Ручные лезвия'");
 		
-		jaeger1.setName("Черно Альфа");
-		jaeger1.setMark("Mark-1");
-		jaeger1.setOrigin("Россия");
-		jaeger1.setWeight(2.412f);
-		jaeger1.setHeight(85.34f);
-		jaeger1.setWeapon("Кулаки Тесла");
-		jaeger1.setArmor(10);
-
 		System.out.println(jaeger1);
 		
 		jaeger1.useWeapon();
-
-		jaeger2.setName("Молчаливый Ронин");
-		jaeger2.setMark("Mark-1");
-		jaeger2.setOrigin("Япония");
-		jaeger2.setWeight(7.450f);
-		jaeger2.setHeight(74.37f);
-		jaeger2.setWeapon("Ручные лезвия");
-		jaeger2.setArmor(3);
 
 		System.out.println(jaeger2);
 		
