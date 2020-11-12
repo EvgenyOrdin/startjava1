@@ -14,27 +14,20 @@ public class GuessNumber {
 	public void start() {
 		generateNumber();
 		
-		while(true) {
-			Scanner scan = new Scanner(System.in);
-		
-			System.out.print(p1.getName() + " введите число: ");
-			p1.setNumber(scan.nextInt());
+		boolean isGameOver;
+		do {
+			inputNumber(p1);
 
-			boolean check = compareNumbers(p1.getNumber(), p1.getName());
+			isGameOver = compareNumbers(p1.getNumber(), p1.getName());
 
-			if(check) {
+			if(isGameOver) {
 				break;
 			}
-		
-			System.out.print(p2.getName() + " введите число: ");
-			p2.setNumber(scan.nextInt());
+			
+			inputNumber(p2);
 
-			check = compareNumbers(p2.getNumber(), p2.getName());
-
-			if(check) {
-				break;
-			}	
-		}
+			isGameOver = compareNumbers(p2.getNumber(), p2.getName());
+		}while(!isGameOver);
 	}
 
 	private void generateNumber() {
@@ -45,11 +38,17 @@ public class GuessNumber {
 
 	private boolean compareNumbers(int number, String name) {
 		if (compNum != number) {
-				System.out.println(name + (compNum > number ? "! число компьютера больше чем ваше!" : "! число компьютера меньше чем ваше!"));
-				return false;
-			} else {
-				System.out.println(name + ", ВЫ ПОБЕДИЛИ!");
-				return true;
-			}
+			System.out.printf("%s, число компьютера" + (compNum > number ? " больше" : " меньше") + ", чем ваше! ",name);
+			return false;
+		} else {
+			System.out.println(name + ", ВЫ ПОБЕДИЛИ!");
+			return true;
+		}			
+	}
+
+	private void inputNumber(Player p) {
+		Scanner scan = new Scanner(System.in);
+		System.out.print(p.getName() + ", введите число: ");
+		p.setNumber(scan.nextInt());
 	}
 }
