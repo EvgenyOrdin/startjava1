@@ -1,3 +1,5 @@
+package com.startjava.lesson_2_3.game;
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -14,20 +16,16 @@ public class GuessNumber {
 	public void start() {
 		generateNumber();
 		
-		boolean isGameOver;
 		do {
 			inputNumber(p1);
 
-			isGameOver = compareNumbers(p1.getNumber(), p1.getName());
-
-			if(isGameOver) {
+			if(compareNumbers(p1.getNumber(), p1.getName())) {
 				break;
 			}
 			
 			inputNumber(p2);
 
-			isGameOver = compareNumbers(p2.getNumber(), p2.getName());
-		}while(!isGameOver);
+		} while(!compareNumbers(p2.getNumber(), p2.getName()));
 	}
 
 	private void generateNumber() {
@@ -40,10 +38,9 @@ public class GuessNumber {
 		if (compNum != number) {
 			System.out.printf("%s, число компьютера" + (compNum > number ? " больше" : " меньше") + ", чем ваше! ",name);
 			return false;
-		} else {
+		}
 			System.out.println(name + ", ВЫ ПОБЕДИЛИ!");
-			return true;
-		}			
+			return true;		
 	}
 
 	private void inputNumber(Player p) {

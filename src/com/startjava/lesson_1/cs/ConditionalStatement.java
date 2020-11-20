@@ -1,3 +1,5 @@
+package com.startjava.lesson_1.cs;
+
 public class ConditionalStatement {
 	public static void main(String[] args) {
 		int age = 26;
