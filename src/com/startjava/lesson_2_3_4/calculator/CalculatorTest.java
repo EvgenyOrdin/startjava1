@@ -3,22 +3,28 @@ package com.startjava.lesson_2_3_4.calculator;
 import java.util.Scanner;
 
 public class CalculatorTest {
-	public static void main(String[] args) {
-		Calculator calculate = new Calculator();
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
 
-		String answer = "yes";
+        String answer = "yes";
 
-		while(answer.equals("yes")) {
-			Scanner scan = new Scanner(System.in);
+        while (answer.equals("yes")) {
+            Scanner scan = new Scanner(System.in);
 
-			calculate.input();
+            System.out.print("Введите математическое выражение, разделяя символы пробелом: ");
 
-			System.out.println(calculate.calc());
+            String mathExpression = scan.nextLine();
 
-			do {
-				System.out.print("Хотите продолжить ? (yes/no):");
-				answer = scan.next();
-			} while(!answer.equals("yes") && !answer.equals("no"));
-		}
-	}
+            String[] arguments = mathExpression.split(" ");
+
+            calc.input(arguments);
+
+            System.out.println(calc.calculate());
+
+            do {
+                System.out.print("Хотите продолжить ? (yes/no):");
+                answer = scan.next();
+            } while (!answer.equals("yes") && !answer.equals("no"));
+        }
+    }
 }
