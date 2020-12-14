@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-
     private int[] numbers = new int[10];
+    private int attempt;
 
     public Player(String name) {
         this.name = name;
@@ -15,25 +15,28 @@ public class Player {
         return name;
     }
 
-    public void setNumbers(int index, int value) {
-        this.numbers[index] = value;
+    public void setNumber(int index, int number) {
+        numbers[index] = number;
     }
 
     public int[] getNumbers() {
-        return numbers;
+        return Arrays.copyOf(numbers, numbers.length);
     }
 
-    public int getElementOfNumbers(int index) {
+    public void setAttempt(int attempt) {
+        this.attempt = attempt;
+    }
+
+    public int[] getEnteredNumbers() {
+        return Arrays.copyOf(getNumbers(), attempt);
+    }
+
+    public int getNumber(int index) {
         return numbers[index];
     }
 
-    public int getLength() {
-        return numbers.length;
-    }
-
     public void zeroing(int index) {
-        index--;
-        Arrays.fill(numbers, 0, index, 0);
-
+        Arrays.fill(numbers, 0, index - 1, 0);
     }
+
 }

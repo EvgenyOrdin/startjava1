@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.game;
 
-
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -20,19 +18,18 @@ public class GuessNumber {
 
         int attempt = 1;
         for (int i = 0; i < 10; i++) {
-
             inputNumber(i, p1);
-            if (compareNumbers(attempt, p1.getElementOfNumbers(i), p1.getName())) {
+            if (compareNumbers(attempt, p1.getNumber(i), p1.getName())) {
                 break;
             }
 
             inputNumber(i, p2);
-            if (compareNumbers(attempt, p2.getElementOfNumbers(i), p2.getName())) {
+            if (compareNumbers(attempt, p2.getNumber(i), p2.getName())) {
                 break;
             }
             attempt++;
         }
-        finishing(attempt);
+        finishGame(attempt);
     }
 
     private void generateNumber() {
@@ -42,37 +39,35 @@ public class GuessNumber {
         System.out.println(compNum); // для тестового прогона
     }
 
+    private void inputNumber(int index, Player p) {
+        p.setAttempt(index + 1);
+        Scanner scan = new Scanner(System.in);
+        System.out.print(p.getName() + ", введите число: ");
+        p.setNumber(index, scan.nextInt());
+    }
+
     private boolean compareNumbers(int attemptNum, int number, String name) {
         if (compNum != number) {
             System.out.printf("%s, число компьютера" + (compNum > number ? " больше" : " меньше") + ", чем ваше!\n", name);
             if (attemptNum == 10) {
-                System.out.println("У Вас, " + name + ", закончились попытки! ");
+                System.out.printf("У Вас, %s, закончились попытки!\n ",name);
             }
             return false;
         }
-        System.out.println("Игрок " + name + ", ПОБЕДИЛ c попытки" + " № " + attemptNum + "! ");
+        System.out.printf("\nИгрок %s, ПОБЕДИЛ c попытки № %s ! ", name, attemptNum);
         return true;
     }
 
-    private void inputNumber(int index, Player p) {
-        Scanner scan = new Scanner(System.in);
-        System.out.print(p.getName() + ", введите число: ");
-        p.setNumbers(index, scan.nextInt());
-    }
-
-    private void displayTheResult(Player p, int attempt) {
-        int[] numbersCopy = new int[0];
-        if (attempt > 10) {
-            numbersCopy = Arrays.copyOf(p.getNumbers(), p.getLength());
-        } else {
-            numbersCopy = Arrays.copyOf(p.getNumbers(), attempt);
+    private void displayResult(Player p) {
+        System.out.printf("\nПопытки игрока %s : ", p.getName());
+        for(int number : p.getEnteredNumbers()) {
+            System.out.print(number + " ");
         }
-        System.out.printf("Попытки игрока %s : %s\n", p.getName(), Arrays.toString(numbersCopy));
     }
 
-    private void finishing(int attempt) {
-        displayTheResult(p1, attempt);
-        displayTheResult(p2, attempt);
+    private void finishGame(int attempt) {
+        displayResult(p1);
+        displayResult(p2);
 
         p1.zeroing(attempt);
         p2.zeroing(attempt);
