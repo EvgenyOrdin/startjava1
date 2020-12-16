@@ -16,20 +16,14 @@ public class GuessNumber {
     public void start() {
         generateNumber();
 
-        int attempt = 1;
-        for (int i = 0; i < 10; i++) {
-            inputNumber(i, p1);
-            if (compareNumbers(attempt, p1.getNumber(i), p1.getName())) {
-                break;
-            }
-
-            inputNumber(i, p2);
-            if (compareNumbers(attempt, p2.getNumber(i), p2.getName())) {
-                break;
-            }
-            attempt++;
+        for (int i = 1; i < 11; i++) {
+          if (stepGame(i, p1)) {
+              break;
+          } else if (stepGame(i, p2)) {
+              break;
+          }
         }
-        finishGame(attempt);
+        finishGame();
     }
 
     private void generateNumber() {
@@ -40,21 +34,18 @@ public class GuessNumber {
     }
 
     private void inputNumber(int index, Player p) {
-        p.setAttempt(index + 1);
+        p.setAttempt(index);
         Scanner scan = new Scanner(System.in);
         System.out.print(p.getName() + ", введите число: ");
-        p.setNumber(index, scan.nextInt());
+        p.setNumber(scan.nextInt());
     }
 
-    private boolean compareNumbers(int attemptNum, int number, String name) {
-        if (compNum != number) {
-            System.out.printf("%s, число компьютера" + (compNum > number ? " больше" : " меньше") + ", чем ваше!\n", name);
-            if (attemptNum == 10) {
-                System.out.printf("У Вас, %s, закончились попытки!\n ",name);
-            }
+    private boolean compareNumbers(Player p) {
+        if (compNum != p.getLastNumber()) {
+            System.out.printf("%s, число компьютера" + (compNum > p.getLastNumber() ? " больше" : " меньше") + ", чем ваше!\n", p.getName());
             return false;
         }
-        System.out.printf("\nИгрок %s, ПОБЕДИЛ c попытки № %s ! ", name, attemptNum);
+        System.out.printf("Игрок %s, ПОБЕДИЛ c попытки № %s ! ", p.getName(), p.getAttempt());
         return true;
     }
 
@@ -65,11 +56,24 @@ public class GuessNumber {
         }
     }
 
-    private void finishGame(int attempt) {
+    private boolean stepGame(int attempt, Player p) {
+        inputNumber(attempt, p);
+        boolean win = compareNumbers(p);
+        checkAttempt(p);
+        return win;
+    }
+
+    private void checkAttempt(Player p) {
+        if (p.getAttempt() == 10) {
+            System.out.printf("У Вас, %s, закончились попытки!\n ",p.getName());
+        }
+    }
+
+    private void finishGame() {
         displayResult(p1);
         displayResult(p2);
 
-        p1.zeroing(attempt);
-        p2.zeroing(attempt);
+        p1.zeroing();
+        p2.zeroing();
     }
 }

@@ -15,28 +15,28 @@ public class Player {
         return name;
     }
 
-    public void setNumber(int index, int number) {
-        numbers[index] = number;
-    }
-
-    public int[] getNumbers() {
-        return Arrays.copyOf(numbers, numbers.length);
+    public int getAttempt() {
+        return attempt;
     }
 
     public void setAttempt(int attempt) {
         this.attempt = attempt;
     }
 
+    public void setNumber(int number) {
+        numbers[attempt - 1] = number;
+    }
+
+    public int getLastNumber() {
+        return numbers[attempt - 1];
+    }
+
     public int[] getEnteredNumbers() {
-        return Arrays.copyOf(getNumbers(), attempt);
+        return Arrays.copyOf(numbers, attempt);
     }
 
-    public int getNumber(int index) {
-        return numbers[index];
+    public void zeroing() {
+        Arrays.fill(numbers, 0, attempt, 0);
+        attempt = 0;
     }
-
-    public void zeroing(int index) {
-        Arrays.fill(numbers, 0, index - 1, 0);
-    }
-
 }
