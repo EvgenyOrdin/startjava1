@@ -17,9 +17,7 @@ public class GuessNumber {
         generateNumber();
 
         for (int i = 1; i < 11; i++) {
-          if (stepGame(i, p1)) {
-              break;
-          } else if (stepGame(i, p2)) {
+          if (makeMove(i, p1) || makeMove(i, p2)) {
               break;
           }
         }
@@ -33,6 +31,13 @@ public class GuessNumber {
         System.out.println(compNum); // для тестового прогона
     }
 
+    private boolean makeMove(int attempt, Player p) {
+        inputNumber(attempt, p);
+        boolean win = compareNumbers(p);
+        checkAttempt(p);
+        return win;
+    }
+
     private void inputNumber(int index, Player p) {
         p.setAttempt(index);
         Scanner scan = new Scanner(System.in);
@@ -41,26 +46,12 @@ public class GuessNumber {
     }
 
     private boolean compareNumbers(Player p) {
-        if (compNum != p.getLastNumber()) {
-            System.out.printf("%s, число компьютера" + (compNum > p.getLastNumber() ? " больше" : " меньше") + ", чем ваше!\n", p.getName());
-            return false;
+        if (compNum == p.getLastNumber()) {
+            System.out.printf("Игрок %s, ПОБЕДИЛ c попытки № %s ! ", p.getName(), p.getAttempt());
+            return true;
         }
-        System.out.printf("Игрок %s, ПОБЕДИЛ c попытки № %s ! ", p.getName(), p.getAttempt());
-        return true;
-    }
-
-    private void displayResult(Player p) {
-        System.out.printf("\nПопытки игрока %s : ", p.getName());
-        for(int number : p.getEnteredNumbers()) {
-            System.out.print(number + " ");
-        }
-    }
-
-    private boolean stepGame(int attempt, Player p) {
-        inputNumber(attempt, p);
-        boolean win = compareNumbers(p);
-        checkAttempt(p);
-        return win;
+        System.out.printf("%s, число компьютера" + (compNum > p.getLastNumber() ? " больше" : " меньше") + ", чем ваше!\n", p.getName());
+        return false;
     }
 
     private void checkAttempt(Player p) {
@@ -75,5 +66,12 @@ public class GuessNumber {
 
         p1.zeroing();
         p2.zeroing();
+    }
+
+    private void displayResult(Player p) {
+        System.out.printf("\nПопытки игрока %s : ", p.getName());
+        for(int number : p.getEnteredNumbers()) {
+            System.out.print(number + " ");
+        }
     }
 }
